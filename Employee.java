@@ -7,6 +7,7 @@ public class Employee {
     private int id;
     private static final Set<Integer> usedIds = new HashSet<>();
 
+    // Constructor
     public Employee(String name, int id) {
         this.name = name;
         this.id = generateUniqueID();
@@ -45,6 +46,15 @@ public class Employee {
     @Override
     public String toString() {
         return "Name: '" + name + "', RandomId: " + id;
+    }
+
+    // Equals Override
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Employee other = (Employee) obj;
+        return name.equals(other.name);
     }
 
 }
