@@ -41,4 +41,10 @@ public class Employee {
         this.id = generateUniqueID();
     }
 
+    // .toString Override
+    @Override
+    public String toString() {
+        return "Name: '" + name + "', RandomId: " + id;
+    }
+
 }
