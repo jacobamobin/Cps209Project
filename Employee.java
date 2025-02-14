@@ -22,4 +22,23 @@ public class Employee {
         usedIds.add(newId);
         return newId;
     }
+
+    // Getters
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    // Setters
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void resetId() {
+        this.id = generateUniqueID();
+    }
+
 }
