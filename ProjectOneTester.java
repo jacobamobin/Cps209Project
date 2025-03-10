@@ -1,9 +1,3 @@
-// NAME: Jacob Mobin
-// STUDENTNUM: 501330782
-// TMUEMAIL: jacob.mobin@torontomu.ca
-// Class: CPS209 SECTION: 4
-// DATE: Feb 13, 2025
-
 /* PROJECT DESCRIPTION:
  * 
  * PROBLEM: You are running a massive company but your internal emails and memos keep getting leaked.
