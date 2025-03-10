@@ -14,7 +14,17 @@ public class UniqueDocument extends Document {
         return employee;
     }
 
-    // Embeds the employee's ID (converted to binary) into the document by modifying the spaces.
+    /** Javadoc format kinda
+     * Purpose: Embeds the employee's ID (converted to binary) into the document's content by modifying the spaces.
+     * 
+     * This method first converts the employee's ID into a 17 bit binary string (17 bits to fit all 5-digit numbers).
+     * It then splits the original content into words and iterates over each word. For each gap between words,
+     * the method uses a corresponding bit from the binary string, a 0 is represented by a single space, while
+     * a 1 is represented by a double space. If the binary string has been fully embedded, any remaining gaps 
+     * are filled with a single space.
+     * 
+     * @return The modified document content with the employee's binary ID embedded in the first 17 spaces. (String)
+     */
     private String embedEmployeeId() {
         // Convert employee id to a fixed-length binary string.
         // A 5-digit number (max 99999) can be represented in at most 17 bits.

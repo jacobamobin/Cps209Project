@@ -21,7 +21,7 @@ public class ManageDocuments {
         documents.add(doc);
     }
 
-    // Retrieves all UniqueDocuments for a given employee.
+    // Gets all Unique Documents for a certian employee
     public List<UniqueDocument> getDocumentsByEmployee(Employee emp) {
         List<UniqueDocument> result = new ArrayList<>();
         for (UniqueDocument doc : documents) {
