@@ -1,12 +1,12 @@
 public class UniqueDocument extends Document {
     private Employee employee;
-    private String markedContent;
+    private String secretContent;
 
     // Constructor: Creates a UniqueDocument for a given employee and embeds a hidden mark.
     public UniqueDocument(String content, Employee employee) {
         super(content);
         this.employee = employee;
-        this.markedContent = embedEmployeeId();
+        this.secretContent = embedEmployeeId();
     }
 
     // Returns the employee associated with this document.
@@ -17,41 +17,41 @@ public class UniqueDocument extends Document {
     // Embeds the employee's ID (converted to binary) into the document by modifying the spaces.
     private String embedEmployeeId() {
         // Convert employee id to a fixed-length binary string.
-        // A 5-digit number (max 99999) can be represented in 17 bits (2^17 = 131072).
+        // A 5-digit number (max 99999) can be represented in at most 17 bits.
         int idValue = employee.getId();
         String binaryId = String.format("%17s", Integer.toBinaryString(idValue)).replace(' ', '0');
 
         // Split the original content into words.
         String[] words = content.split(" ");
-        StringBuilder sb = new StringBuilder();
+        StringBuilder build = new StringBuilder();
         int bitsToEmbed = binaryId.length();
         int bitIndex = 0;
 
         // For each gap between words, use the corresponding bit:
         // '0' is a single space; '1' is a double space.
-        for (int i = 0; i < words.length; i++) {
-            sb.append(words[i]);
-            if (i < words.length - 1) {
-                if (bitIndex < bitsToEmbed) {
-                    char bit = binaryId.charAt(bitIndex);
-                    sb.append(bit == '1' ? "  " : " ");
-                    bitIndex++;
-                } else {
-                    // Once all bits are embedded, use a normal single space.
-                    sb.append(" ");
+        for (int i = 0; i < words.length; i++) {  // Loop through each word in words
+            build.append(words[i]); // Append the current word to stringbuilder
+            if (i < words.length - 1) {  // If not the last word add a space
+                if (bitIndex < bitsToEmbed) {  // Check if there are still bits left to embed
+                    char bit = binaryId.charAt(bitIndex); // Retrieve the current bit from the binary employee id
+                    build.append(bit == '1' ? "  " : " "); // Append a double space if the bit is '1' otherwise one space.
+                    bitIndex++; 
+                } else {  // if done embedding spaces
+                    build.append(" ");  // add single spaces for the rest 
                 }
             }
         }
-        return sb.toString();
+        return build.toString();                                  
+        
     }
 
     // Returns the marked content with the hidden employee id.
-    public String getMarkedContent() {
-        return markedContent;
+    public String getSecretContent() {
+        return secretContent;
     }
 
     @Override
     public String toString() {
-        return "UniqueDocument [Employee=" + employee + ", Marked Content=" + markedContent + "]";
+        return "UniqueDocument [Employee=" + employee + ", Marked Content=" + secretContent + "]";
     }
 }

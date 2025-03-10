@@ -8,7 +8,7 @@ public class Employee {
     private static final Set<Integer> usedIds = new HashSet<>();
 
     // Constructor
-    public Employee(String name, int id) {
+    public Employee(String name) {
         this.name = name;
         this.id = generateUniqueID();
     }
@@ -54,7 +54,7 @@ public class Employee {
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         Employee other = (Employee) obj;
-        return name.equals(other.name);
+        return id == other.id;
     }
 
 }
